@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students & Parents | ClothsSales</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <span class="logo-dot">●</span>
+      <span class="logo-text">ClothsSales</span>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schools.html">School</a></li>
+      <li><a href="billing.html">Billing</a></li>
+      <li><a href="students.html" class="active">Students / Parents</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="notification-icon"><i class="fa-solid fa-bell"></i></div>
+      <div class="user-profile">
+        <span class="user-initials">RK</span>
+        <span class="user-role">Super Admin</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Search students, schools, bills...">
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-content">
+    <div class="page-header">
+      <div class="header-left">
+        <h1>Students & Parents</h1>
+        <p>Manage student and parent records</p>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-button active" onclick="switchTab('students')">Students</button>
+        <button class="tab-button" onclick="switchTab('parents')">Parents</button>
+      </div>
+
+      <!-- STUDENTS TAB -->
+      <div id="students-tab" class="tab-content active">
+        <!-- SEARCH AND ACTIONS -->
+        <div class="students-toolbar">
+          <div class="search-box">
+            <span class="search-icon"><i class="fa-solid fa-search"></i></span>
+            <input type="text" placeholder="Search by name, class, phone...">
+          </div>
+          <div class="toolbar-buttons">
+            <button class="btn btn-import" onclick="importExcel()"><i class="fa-solid fa-file-import"></i> Import Excel</button>
+            <button class="btn btn-add" onclick="openAddStudentModal()">+ Add Student</button>
+          </div>
+        </div>
+
+        <!-- STUDENTS TABLE -->
+        <div class="table-card">
+          <table class="students-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Section</th>
+                <th>Roll No</th>
+                <th>Parent</th>
+                <th>School</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Arjun Verma</strong></td>
+                <td><span class="class-badge">1st Standard</span></td>
+                <td>A</td>
+                <td>101</td>
+                <td>Amit Verma</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)"> View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)"> Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Ananya Verma</strong></td>
+                <td><span class="class-badge">5th Standard</span></td>
+                <td>B</td>
+                <td>502</td>
+                <td>Amit Verma</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)"> View</button>
+                      <button class="action-item" onclick="editStudent(event)"> Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Riya Singh</strong></td>
+                <td><span class="class-badge">2nd Standard</span></td>
+                <td>A</td>
+                <td>201</td>
+                <td>Priya Singh</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)"> View</button>
+                      <button class="action-item" onclick="editStudent(event)"> Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)"> Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Kavya Gupta</strong></td>
+                <td><span class="class-badge">1st Standard</span></td>
+                <td>B</td>
+                <td>112</td>
+                <td>Rahul Gupta</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)"> Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)"> Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Aditya Gupta</strong></td>
+                <td><span class="class-badge">5th Standard</span></td>
+                <td>A</td>
+                <td>508</td>
+                <td>Rahul Gupta</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
+                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PARENTS TAB -->
+      <div id="parents-tab" class="tab-content">
+        <div class="parents-toolbar">
+          <div class="search-box">
+            <span class="search-icon"><i class="fa-solid fa-search"></i></span>
+            <input type="text" placeholder="Search by name, phone, email...">
+          </div>
+          <button class="btn btn-add" onclick="openAddParentModal()">+ Add Parent</button>
+        </div>
+
+        <div class="table-card">
+          <table class="students-table">
+            <thead>
+              <tr>
+                <th>Parent Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Student</th>
+                <th>School</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Amit Verma</strong></td>
+                <td>+91 98765 43210</td>
+                <td>amit.verma@email.com</td>
+                <td>Arjun Verma, Ananya Verma</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
+                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Priya Singh</strong></td>
+                <td>+91 98765 43211</td>
+                <td>priya.singh@email.com</td>
+                <td>Riya Singh</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
+                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Rahul Gupta</strong></td>
+                <td>+91 98765 43212</td>
+                <td>rahul.gupta@email.com</td>
+                <td>Kavya Gupta, Aditya Gupta</td>
+                <td>Delhi Public School</td>
+                <td>
+                  <div class="action-menu-wrapper">
+                    <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
+                    <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
+                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD STUDENT MODAL -->
+  <div class="modal" id="addStudentModal">
+    <div class="modal-overlay" onclick="closeAddStudentModal()"></div>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Add New Student</h3>
+        <span class="modal-close" onclick="closeAddStudentModal()">×</span>
+      </div>
+
+      <p class="modal-subtitle">Enter the student details to register them in the system.</p>
+
+      <form class="modal-form" id="addStudentForm">
+        <div class="form-group">
+          <label>Student Name</label>
+          <input type="text" placeholder="Enter student name" class="form-input" id="studentName" required>
+        </div>
+
+        <div class="form-group">
+          <label>School</label>
+          <select class="form-input" id="studentSchool" required>
+            <option value="">Select school</option>
+            <option value="Delhi Public School">Delhi Public School</option>
+            <option value="St. Marys Convent">St. Marys Convent</option>
+            <option value="Kendriya Vidyalaya">Kendriya Vidyalaya</option>
+            <option value="Ryan International">Ryan International</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Class</label>
+            <select class="form-input" id="studentClass" required>
+              <option value="">Select class</option>
+              <option value="1st Standard">1st Standard</option>
+              <option value="2nd Standard">2nd Standard</option>
+              <option value="3rd Standard">3rd Standard</option>
+              <option value="4th Standard">4th Standard</option>
+              <option value="5th Standard">5th Standard</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Section</label>
+            <select class="form-input" id="studentSection" required>
+              <option value="">Select section</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Roll Number</label>
+          <input type="text" placeholder="Enter roll number" class="form-input" id="studentRollNo" required>
+        </div>
+
+        <div class="form-group">
+          <label>Parent</label>
+          <select class="form-input" id="studentParent" required>
+            <option value="">Select parent</option>
+            <option value="Amit Verma">Amit Verma</option>
+            <option value="Priya Singh">Priya Singh</option>
+            <option value="Rahul Gupta">Rahul Gupta</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeAddStudentModal()">Cancel</button>
+          <button type="submit" class="btn btn-submit">Add Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- HIDDEN FILE INPUT FOR EXCEL IMPORT -->
+  <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" style="display: none;">
+
+<script>
+  function switchTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Show selected tab
+    document.getElementById(tabName + '-tab').classList.add('active');
+    
+    // Add active class to clicked button
+    event.target.classList.add('active');
+  }
+
+  function openAddStudentModal() {
+    document.getElementById("addStudentForm").reset();
+    document.getElementById("addStudentModal").style.display = "flex";
+  }
+
+  function closeAddStudentModal() {
+    document.getElementById("addStudentModal").style.display = "none";
+  }
+
+  function openAddParentModal() {
+    alert('Opening Add Parent Modal');
+  }
+
+  function importExcel() {
+    document.getElementById("excelFileInput").click();
+  }
+
+  // Handle file selection for Excel import
+  document.getElementById("excelFileInput").addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      alert('Selected file: ' + file.name + '\nFile size: ' + (file.size / 1024).toFixed(2) + ' KB\n\nImporting...');
+      // Here you can add actual file processing logic
+    }
+  });
+
+  function toggleStudentMenu(event) {
+    event.stopPropagation();
+    const wrapper = event.target.closest('.action-menu-wrapper');
+    const dropdown = wrapper.querySelector('.student-action-dropdown');
+    
+    // Close other dropdowns
+    document.querySelectorAll('.student-action-dropdown').forEach(el => {
+      if (el !== dropdown) {
+        el.classList.remove('show');
+      }
+    });
+    
+    dropdown.classList.toggle('show');
+  }
+
+  function closeStudentMenu(event) {
+    event.stopPropagation();
+  }
+
+  function viewStudent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    alert('Viewing student details');
+    closeStudentMenus();
+  }
+
+  function editStudent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    alert('Editing student');
+    closeStudentMenus();
+  }
+
+  function deleteStudent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if (confirm('Are you sure you want to delete this record? This action cannot be undone.')) {
+      event.target.closest('tr').remove();
+      closeStudentMenus();
+    }
+  }
+
+  function closeStudentMenus() {
+    document.querySelectorAll('.student-action-dropdown').forEach(dropdown => {
+      dropdown.classList.remove('show');
+    });
+  }
+
+  // Handle Add Student form submission
+  document.getElementById("addStudentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const studentName = document.getElementById("studentName").value;
+    const school = document.getElementById("studentSchool").value;
+    const studentClass = document.getElementById("studentClass").value;
+    const section = document.getElementById("studentSection").value;
+    const rollNumber = document.getElementById("studentRollNo").value;
+    const parent = document.getElementById("studentParent").value;
+    
+    if (!studentName || !school || !studentClass || !section || !rollNumber || !parent) {
+      alert("Please fill in all fields");
+      return;
+    }
+    
+    // Create a new table row
+    const tbody = document.querySelector('.students-table tbody');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <td>${studentName}</td>
+      <td><span class="class-badge">${studentClass}</span></td>
+      <td>${section}</td>
+      <td>${rollNumber}</td>
+      <td>${parent}</td>
+      <td>${school}</td>
+      <td>
+        <div class="action-menu-wrapper">
+          <button class="action-btn" onclick="toggleStudentMenu(event)">⋮</button>
+          <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
+            <a href="#" onclick="viewStudent(event)">View</a>
+            <a href="#" onclick="editStudent(event)">Edit</a>
+            <a href="#" onclick="deleteStudent(event)">Delete</a>
+          </div>
+        </div>
+      </td>
+    `;
+    
+    tbody.appendChild(newRow);
+    
+    // Reset form and close modal
+    document.getElementById("addStudentForm").reset();
+    closeAddStudentModal();
+    alert('Student added successfully!');
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function() {
+    closeStudentMenus();
+  });
+</script>
+
+</body>
+</html>

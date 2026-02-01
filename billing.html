@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Billing & Invoices | ClothsSales</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <span class="logo-dot">●</span>
+      <span class="logo-text">ClothsSales</span>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schools.html">School</a></li>
+      <li><a href="billing.html" class="active">Billing</a></li>
+      <li><a href="students.html">Students / Parents</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="notification-icon"><i class="fa-solid fa-bell"></i></div>
+      <div class="user-profile">
+        <span class="user-initials">RK</span>
+        <span class="user-role">Super Admin</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Search students, schools, bills...">
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-content">
+    <div class="page-header">
+      <div class="header-left">
+        <h1>Billing & Invoices</h1>
+        <p>Manage bills, payments, and invoices</p>
+      </div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stat-cards-container">
+      <div class="stat-card">
+        <div class="stat-icon">₹</div>
+        <div class="stat-content">
+          <div class="stat-label">Total Bills</div>
+          <div class="stat-value">4</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon paid">₹</div>
+        <div class="stat-content">
+          <div class="stat-label">Paid Amount</div>
+          <div class="stat-value paid">₹2,505</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon pending">₹</div>
+        <div class="stat-content">
+          <div class="stat-label">Pending Amount</div>
+          <div class="stat-value pending">₹4,040</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon draft">₹</div>
+        <div class="stat-content">
+          <div class="stat-label">Draft Bills</div>
+          <div class="stat-value">1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH AND FILTER -->
+    <div class="bills-toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search bills...">
+      </div>
+      <select class="filter-dropdown">
+        <option>All Status</option>
+        <option>Paid</option>
+        <option>Pending</option>
+        <option>Partial</option>
+        <option>Draft</option>
+      </select>
+      <button class="btn btn-create-bill" onclick="openCreateBillModal()">+ Create Bill</button>
+    </div>
+
+    <!-- BILLS TABLE -->
+    <div class="table-card">
+      <table class="bills-table">
+        <thead>
+          <tr>
+            <th>Bill No</th>
+            <th>Student</th>
+            <th>Parent</th>
+            <th>Class</th>
+            <th>Total</th>
+            <th>Due</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="bill-number">INV-2026-001</span></td>
+            <td>Arjun Verma</td>
+            <td>Amit Verma</td>
+            <td>1st Standard</td>
+            <td>₹2,505</td>
+            <td><span class="due-amount zero">₹0</span></td>
+            <td><span class="status paid">Paid</span></td>
+            <td>20 Jan</td>
+            <td>
+              <div class="action-menu-wrapper">
+                <span class="action-dots" onclick="toggleBillMenu(event)">⋮</span>
+                <div class="bill-action-dropdown" onclick="closeBillMenu(event)">
+                  <button class="action-item" onclick="viewBill(event)">👁️ View Bill</button>
+                  <button class="action-item" onclick="showQRCode(event)">📋 Show QR Code</button>
+                  <button class="action-item" onclick="printBill(event)">🖨️ Print</button>
+                  <button class="action-item" onclick="downloadPDF(event)">📥 Download PDF</button>
+                  <button class="action-item" onclick="processRefund(event)">🔄 Process Refund</button>
+                  <button class="action-item delete" onclick="deleteBill(event)">🗑️ Delete</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bill-number">INV-2026-002</span></td>
+            <td>Riya Singh</td>
+            <td>Priya Singh</td>
+            <td>2nd Standard</td>
+            <td>₹2,750</td>
+            <td><span class="due-amount pending">₹2,750</span></td>
+            <td><span class="status pending">Pending</span></td>
+            <td>22 Jan</td>
+            <td>
+              <div class="action-menu-wrapper">
+                <span class="action-dots" onclick="toggleBillMenu(event)">⋮</span>
+                <div class="bill-action-dropdown" onclick="closeBillMenu(event)">
+                  <button class="action-item" onclick="viewBill(event)">👁️ View Bill</button>
+                  <button class="action-item" onclick="showQRCode(event)">📋 Show QR Code</button>
+                  <button class="action-item" onclick="printBill(event)">🖨️ Print</button>
+                  <button class="action-item" onclick="downloadPDF(event)">📥 Download PDF</button>
+                  <button class="action-item" onclick="processRefund(event)">🔄 Process Refund</button>
+                  <button class="action-item delete" onclick="deleteBill(event)">🗑️ Delete</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bill-number">INV-2026-003</span></td>
+            <td>Aditya Gupta</td>
+            <td>Rahul Gupta</td>
+            <td>5th Standard</td>
+            <td>₹3,290</td>
+            <td><span class="due-amount pending">₹1,290</span></td>
+            <td><span class="status partial">Partial</span></td>
+            <td>24 Jan</td>
+            <td>
+              <div class="action-menu-wrapper">
+                <span class="action-dots" onclick="toggleBillMenu(event)">⋮</span>
+                <div class="bill-action-dropdown" onclick="closeBillMenu(event)">
+                  <button class="action-item" onclick="viewBill(event)">👁️ View Bill</button>
+                  <button class="action-item" onclick="showQRCode(event)">📋 Show QR Code</button>
+                  <button class="action-item" onclick="printBill(event)">🖨️ Print</button>
+                  <button class="action-item" onclick="downloadPDF(event)">📥 Download PDF</button>
+                  <button class="action-item" onclick="processRefund(event)">🔄 Process Refund</button>
+                  <button class="action-item delete" onclick="deleteBill(event)">🗑️ Delete</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bill-number">INV-2026-004</span></td>
+            <td>Ananya Verma</td>
+            <td>Amit Verma</td>
+            <td>5th Standard</td>
+            <td>₹2,850</td>
+            <td><span class="due-amount pending">₹2,850</span></td>
+            <td><span class="status draft">Draft</span></td>
+            <td>25 Jan</td>
+            <td>
+              <div class="action-menu-wrapper">
+                <span class="action-dots" onclick="toggleBillMenu(event)">⋮</span>
+                <div class="bill-action-dropdown" onclick="closeBillMenu(event)">
+                  <button class="action-item" onclick="viewBill(event)">👁️ View Bill</button>
+                  <button class="action-item" onclick="showQRCode(event)">📋 Show QR Code</button>
+                  <button class="action-item" onclick="printBill(event)">🖨️ Print</button>
+                  <button class="action-item" onclick="downloadPDF(event)">📥 Download PDF</button>
+                  <button class="action-item" onclick="processRefund(event)">🔄 Process Refund</button>
+                  <button class="action-item delete" onclick="deleteBill(event)">🗑️ Delete</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CREATE NEW BILL MODAL -->
+  <div class="modal" id="createBillModal">
+    <div class="modal-overlay" onclick="closeCreateBillModal()"></div>
+    <div class="modal-box create-bill-box">
+      <div class="modal-header">
+        <h3>Create New Bill</h3>
+        <span class="modal-close" onclick="closeCreateBillModal()">×</span>
+      </div>
+
+      <p class="modal-subtitle">Select a student to auto-generate bill items based on their class package.</p>
+
+      <form class="create-bill-form" id="createBillForm">
+        <div class="form-row-horizontal">
+          <div class="form-group">
+            <label>School</label>
+            <div class="custom-select-wrapper">
+              <select class="custom-select" id="billSchool" onchange="updateStudents()">
+                <option value="">Select school</option>
+                <option value="Delhi Public School">Delhi Public School</option>
+                <option value="St. Marys Convent">St. Marys Convent</option>
+                <option value="Kendriya Vidyalaya">Kendriya Vidyalaya</option>
+                <option value="Ryan International">Ryan International</option>
+              </select>
+              <div class="select-dropdown" id="schoolDropdown">
+                <div class="dropdown-item" onclick="selectSchool('Delhi Public School')">Delhi Public School</div>
+                <div class="dropdown-item" onclick="selectSchool('St. Marys Convent')">St. Marys Convent</div>
+                <div class="dropdown-item" onclick="selectSchool('Kendriya Vidyalaya')">Kendriya Vidyalaya</div>
+                <div class="dropdown-item" onclick="selectSchool('Ryan International')">Ryan International</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Student</label>
+            <div class="custom-select-wrapper">
+              <select class="custom-select" id="billStudent">
+                <option value="">Select student</option>
+              </select>
+              <div class="select-dropdown" id="studentDropdown">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeCreateBillModal()">Cancel</button>
+          <button type="button" class="btn-draft" onclick="saveDraft()">Save as Draft</button>
+          <button type="submit" class="btn btn-submit">Generate Bill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+  const schoolStudents = {
+    'Delhi Public School': ['Arjun Verma', 'Priya Sharma', 'Vikram Singh'],
+    'St. Marys Convent': ['Sarah Johnson', 'Maria Garcia', 'Emma Wilson'],
+    'Kendriya Vidyalaya': ['Aditya Gupta', 'Rahul Gupta', 'Deepak Singh'],
+    'Ryan International': ['Ananya Verma', 'Riya Singh', 'Sophia Brown']
+  };
+
+  function openCreateBillModal() {
+    document.getElementById("createBillModal").style.display = "flex";
+  }
+
+  function closeCreateBillModal() {
+    document.getElementById("createBillModal").style.display = "none";
+  }
+
+  function selectSchool(school) {
+    document.getElementById("billSchool").value = school;
+    document.querySelector('.select-dropdown').classList.remove('show');
+    updateStudents();
+  }
+
+  function updateStudents() {
+    const school = document.getElementById("billSchool").value;
+    const studentSelect = document.getElementById("billStudent");
+    const studentDropdown = document.getElementById("studentDropdown");
+    
+    studentSelect.innerHTML = '<option value="">Select student</option>';
+    studentDropdown.innerHTML = '';
+    
+    if (school && schoolStudents[school]) {
+      schoolStudents[school].forEach(student => {
+        const option = document.createElement('option');
+        option.value = student;
+        option.textContent = student;
+        studentSelect.appendChild(option);
+        
+        const dropdownItem = document.createElement('div');
+        dropdownItem.className = 'dropdown-item';
+        dropdownItem.textContent = student;
+        dropdownItem.onclick = () => selectStudent(student);
+        studentDropdown.appendChild(dropdownItem);
+      });
+    }
+  }
+
+  function selectStudent(student) {
+    document.getElementById("billStudent").value = student;
+    document.getElementById("studentDropdown").classList.remove('show');
+  }
+
+  function saveDraft() {
+    const school = document.getElementById("billSchool").value;
+    const student = document.getElementById("billStudent").value;
+    
+    if (!school || !student) {
+      alert("Please select both school and student");
+      return;
+    }
+    
+    alert("Bill saved as draft for " + student);
+    closeCreateBillModal();
+  }
+
+  document.getElementById("createBillForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const school = document.getElementById("billSchool").value;
+    const student = document.getElementById("billStudent").value;
+    
+    if (!school || !student) {
+      alert("Please select both school and student");
+      return;
+    }
+    
+    alert("Bill generated for " + student);
+    closeCreateBillModal();
+  });
+
+  // Toggle dropdown visibility
+  document.getElementById("billSchool").addEventListener("click", function(e) {
+    e.stopPropagation();
+    document.getElementById("schoolDropdown").classList.toggle('show');
+  });
+
+  document.getElementById("billStudent").addEventListener("click", function(e) {
+    e.stopPropagation();
+    document.getElementById("studentDropdown").classList.toggle('show');
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function() {
+    document.getElementById("schoolDropdown").classList.remove('show');
+    document.getElementById("studentDropdown").classList.remove('show');
+  });
+
+  function toggleBillMenu(event) {
+    event.stopPropagation();
+    const wrapper = event.target.closest('.action-menu-wrapper');
+    const dropdown = wrapper.querySelector('.bill-action-dropdown');
+    
+    // Close other dropdowns
+    document.querySelectorAll('.bill-action-dropdown').forEach(el => {
+      if (el !== dropdown) {
+        el.classList.remove('show');
+      }
+    });
+    
+    dropdown.classList.toggle('show');
+  }
+
+  function closeBillMenu(event) {
+    event.stopPropagation();
+  }
+
+  function viewBill(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    alert('Viewing bill: ' + billNo);
+    closeBillMenus();
+  }
+
+  function showQRCode(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    alert('Showing QR code for: ' + billNo);
+    closeBillMenus();
+  }
+
+  function printBill(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    alert('Printing bill: ' + billNo);
+    closeBillMenus();
+  }
+
+  function downloadPDF(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    alert('Downloading PDF for: ' + billNo);
+    closeBillMenus();
+  }
+
+  function processRefund(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    alert('Processing refund for: ' + billNo);
+    closeBillMenus();
+  }
+
+  function deleteBill(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const billNo = event.target.closest('tr').cells[0].textContent.trim();
+    
+    if (confirm('Are you sure you want to delete ' + billNo + '? This action cannot be undone.')) {
+      event.target.closest('tr').remove();
+      closeBillMenus();
+    }
+  }
+
+  function closeBillMenus() {
+    document.querySelectorAll('.bill-action-dropdown').forEach(dropdown => {
+      dropdown.classList.remove('show');
+    });
+  }
+</script>
+
+</body>
+</html>
