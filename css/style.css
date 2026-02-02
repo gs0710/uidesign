@@ -94,9 +94,97 @@ body {
 
 .btn:hover {
   background: #ffd633;
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+}
+
+.btn:focus-visible,
+.hero-btn:focus-visible {
+  outline: 3px solid rgba(245,196,0,0.35);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Menu toggle (mobile) */
+.menu-toggle {
+  display: none; /* enabled at smaller breakpoints */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #fff;
+}
+.menu-icon {
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.25s ease, top 0.25s ease, opacity 0.25s;
+}
+.menu-icon::before { top: -7px; }
+.menu-icon::after { top: 7px; }
+
+/* Navbar when open */
+.navbar.open .menu-icon {
+  transform: rotate(45deg);
+  background: transparent;
+}
+.navbar.open .menu-icon::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+.navbar.open .menu-icon::after {
+  opacity: 0;
+}
+
+/* Mobile nav slide */
+.nav-center {
+  transition: max-height 0.32s ease, opacity 0.24s ease;
+  overflow: hidden;
 }
 
 /* ================= HERO SECTION ================= */
+
+.hero {
+  height: 100vh;
+  position: relative;
+  background: url("../image/uniform.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(44, 41, 41, 0.6), rgba(5, 5, 5, 0.6));
+  z-index: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+} 
 
 .hero {
   height: 100vh;
@@ -256,6 +344,10 @@ body {
 
 /* ================= RESPONSIVE ================= */
 
+@media (max-width: 1200px) {
+  .navbar { padding: 0 30px; }
+}
+
 @media (max-width: 992px) {
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -264,7 +356,69 @@ body {
   .stats-container {
     gap: 20px;
   }
+
+  .hero-content {
+    max-width: 520px;
+  }
 }
+
+@media (max-width: 768px) {
+  /* Navbar tweaks */
+  .navbar {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  /* Show hamburger, collapse center nav with slide-down */
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-center {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.92);
+    padding: 12px 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease, opacity 0.24s ease;
+  }
+
+  .navbar.open .nav-center {
+    max-height: 420px;
+    opacity: 1;
+  }
+
+  .logo-text { font-size: 16px; }
+
+  /* Hero adjustments */
+  .hero {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: calc(100vh - 64px);
+    align-items: center;
+  }
+
+  .hero::before { opacity: 0.6; }
+  .hero-content {
+    max-width: 520px;
+    background: rgba(0,0,0,0.22);
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .hero-content h1 { font-size: 42px; }
+  .hero-content p { font-size: 15px; }
+
+  .hero-buttons { gap: 18px; }
+  .btn, .hero-btn { padding: 10px 18px; font-size: 14px; }
+} 
 
 @media (max-width: 576px) {
   .features-grid {
@@ -280,6 +434,46 @@ body {
   .stats-section {
     padding: 50px 20px;
   }
+
+  /* Make hero content fill smaller screens better */
+  .hero {
+    padding-left: 18px;
+    padding-right: 18px;
+    height: calc(100vh - 60px);
+    background-position: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+    line-height: 1.05;
+  }
+
+  .hero-content p { font-size: 14px; }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav-right .btn { padding: 8px 12px; }
+
+  /* Prevent horizontal scroll on tiny viewports */
+  body { overflow-x: hidden; }
+}
+
+@media (max-width: 420px) {
+  .navbar { padding: 0 12px; height: 60px; }
+  .logo-text { font-size: 15px; }
+  .hero-content h1 { font-size: 28px; }
+  .hero-content p { font-size: 13px; }
+  .hero { padding-left: 14px; padding-right: 14px; }
+  .hero-buttons { align-items: flex-start; }
+  .btn.hero-btn { padding: 10px 14px; }
 }
 
 /* PAGE */

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cloths Sales</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- Font Awesome for icons -->
@@ -16,7 +17,11 @@
       <span class="logo-text">ClothsSales</span>
     </div>
 
-    <ul class="nav-center">
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+
+    <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html">School</a></li>
       <li><a href="billing.html">Billing</a></li>
@@ -40,7 +45,7 @@
 
       <div class="hero-buttons">
         <a href="#" class="btn hero-btn">Shop Now</a>
-        <a href="#" class="watch"><i class="fa-solid fa-play"></i> Watch Collection</a>
+        <a href="#" class="watch">▶ Watch Collection</a>
       </div>
     </div>
   </section>
@@ -112,5 +117,4 @@
   </div>
 </section>
 
-</body>
-</html>
+  <script src="js/script.js"></script>
