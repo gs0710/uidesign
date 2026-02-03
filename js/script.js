@@ -1,3 +1,94 @@
+// ===== AUTH MODAL LOGIC =====
+document.addEventListener('DOMContentLoaded', function() {
+  // Modal elements
+  const authModal = document.getElementById('auth-modal');
+  const openSignin = document.getElementById('open-signin');
+  const openSignup = document.getElementById('open-signup');
+  const closeModal = document.getElementById('close-modal');
+  const signinForm = document.getElementById('signin-form');
+  const signupForm = document.getElementById('signup-form');
+  const switchToSignup = document.getElementById('switch-to-signup');
+  const switchToSignin = document.getElementById('switch-to-signin');
+  const modalTitle = document.getElementById('modal-title');
+  const navbarUser = document.getElementById('navbar-user');
+  const loginGoogle = document.getElementById('login-google');
+  const registerGoogle = document.getElementById('register-google');
+
+  // Show modal helpers
+  function showModal(type) {
+    authModal.classList.add('show');
+    if (type === 'signin') {
+      signinForm.style.display = '';
+      signupForm.style.display = 'none';
+      modalTitle.textContent = 'Sign In';
+    } else {
+      signinForm.style.display = 'none';
+      signupForm.style.display = '';
+      modalTitle.textContent = 'Sign Up';
+    }
+  }
+  function hideModal() {
+    authModal.classList.remove('show');
+  }
+
+  if (openSignin) openSignin.onclick = e => { e.preventDefault(); showModal('signin'); };
+  if (openSignup) openSignup.onclick = e => { e.preventDefault(); showModal('signup'); };
+  if (closeModal) closeModal.onclick = hideModal;
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') hideModal(); });
+  authModal && authModal.addEventListener('click', e => { if (e.target === authModal) hideModal(); });
+  if (switchToSignup) switchToSignup.onclick = e => { e.preventDefault(); showModal('signup'); };
+  if (switchToSignin) switchToSignin.onclick = e => { e.preventDefault(); showModal('signin'); };
+
+  // Demo local login/signup (replace with real backend or Firebase)
+  function fakeAuth(name, cb) {
+    setTimeout(() => cb({ name }), 600);
+  }
+  signinForm && signinForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('signin-email').value;
+    const pass = document.getElementById('signin-password').value;
+    fakeAuth(email.split('@')[0] || 'User', user => {
+      hideModal();
+      showUser(user.name);
+    });
+  });
+  signupForm && signupForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    fakeAuth(name, user => {
+      hideModal();
+      showUser(user.name);
+    });
+  });
+
+  // Google Auth (replace with real OAuth/Firebase)
+  function googleAuth(cb) {
+    // TODO: Integrate Firebase or OAuth here
+    setTimeout(() => cb({ name: 'Google User' }), 600);
+  }
+  loginGoogle && loginGoogle.addEventListener('click', function() {
+    googleAuth(user => {
+      hideModal();
+      showUser(user.name);
+    });
+  });
+  registerGoogle && registerGoogle.addEventListener('click', function() {
+    googleAuth(user => {
+      hideModal();
+      showUser(user.name);
+    });
+  });
+
+  // Show user in navbar
+  function showUser(name) {
+    if (navbarUser) {
+      navbarUser.textContent = name;
+      navbarUser.style.display = 'inline-block';
+    }
+    if (openSignin) openSignin.style.display = 'none';
+    if (openSignup) openSignup.style.display = 'none';
+  }
+});
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   sidebar.style.display =

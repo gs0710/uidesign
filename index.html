@@ -13,14 +13,12 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-left">
-      <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
+      <a href="index.html" class="logo-link"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a>
     </div>
-
 
     <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">
       <span class="menu-icon" aria-hidden="true"></span>
     </button>
-
 
     <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
@@ -30,10 +28,53 @@
     </ul>
 
     <div class="nav-right">
-      <a href="#" class="signin">Sign In</a>
-      <a href="#" class="btn">Get Started</a>
+      <a href="#" class="signin" id="open-signin">Sign In</a>
+      <a href="#" class="btn" id="open-signup">Sign Up</a>
+      <span class="navbar-user" id="navbar-user" style="display:none;"></span>
     </div>
   </nav>
+
+  <!-- Sign In / Sign Up Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span id="modal-title">Sign In</span>
+        <span id="close-modal" style="cursor:pointer;">&times;</span>
+      </div>
+      <form class="modal-form" id="signin-form">
+        <div class="input-group">
+          <label for="signin-email"><i class="fa-solid fa-envelopes-bulk"></i></label>
+          <input type="email" id="signin-email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <label for="signin-password"><i class="fa-solid fa-key"></i></label>
+          <input type="password" id="signin-password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn" id="login-btn">Login</button>
+        <div class="or-divider"><span>or</span></div>
+        <button type="button" class="btn google-btn" id="login-google"><i class="fa-brands fa-google"></i> Login with Google</button>
+        <div class="switch-auth">Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></div>
+      </form>
+      <form class="modal-form" id="signup-form" style="display:none;">
+        <div class="input-group">
+          <label for="signup-name"><i class="fa-solid fa-user"></i></label>
+          <input type="text" id="signup-name" placeholder="Name" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-email"><i class="fa-solid fa-envelopes-bulk"></i></label>
+          <input type="email" id="signup-email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-password"><i class="fa-solid fa-key"></i></label>
+          <input type="password" id="signup-password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn" id="register-btn">Register</button>
+        <div class="or-divider"><span>or</span></div>
+        <button type="button" class="btn google-btn" id="register-google"><i class="fa-brands fa-google"></i> Register with Google</button>
+        <div class="switch-auth">Already have an account? <a href="#" id="switch-to-signin">Sign In</a></div>
+      </form>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -119,3 +160,15 @@
 </section>
 
   <script src="js/script.js"></script>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="schools.html">Schools</a>
+      <a href="billing.html">Billing</a>
+      <a href="students.html">Students/Parents</a>
+      <a href="profile.html">Profile</a>
+      <a href="inventory.html">Inventory</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 ClothsSales. All rights reserved.</div>
+  </footer>
