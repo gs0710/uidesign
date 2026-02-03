@@ -9,12 +9,13 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="nav-left">
-      <span class="logo-dot">●</span>
-      <span class="logo-text">ClothsSales</span>
-    </div>
+    <div class="nav-left"></div>
 
-    <ul class="nav-center">
+    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
+
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+
+    <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html">School</a></li>
       <li><a href="billing.html" class="active">Billing</a></li>
@@ -92,7 +93,7 @@
         <option>Partial</option>
         <option>Draft</option>
       </select>
-      <button class="btn btn-create-bill" onclick="openCreateBillModal()">+ Create Bill</button>
+      <button class="btn btn-create-bill btn-fixed" onclick="openCreateBillModal()">+ Create Bill</button>
     </div>
 
     <!-- BILLS TABLE -->
@@ -217,6 +218,8 @@
     <div class="modal-overlay" onclick="closeCreateBillModal()"></div>
     <div class="modal-box create-bill-box">
       <div class="modal-header">
+
+<script src="js/script.js"></script>
         <h3>Create New Bill</h3>
         <span class="modal-close" onclick="closeCreateBillModal()">×</span>
       </div>

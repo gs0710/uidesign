@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <title>Students & Parents | ClothsSales</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="nav-left">
-      <span class="logo-dot">●</span>
-      <span class="logo-text">ClothsSales</span>
-    </div>
+    <div class="nav-left"></div>
 
-    <ul class="nav-center">
+    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
+
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+
+    <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html">School</a></li>
       <li><a href="billing.html">Billing</a></li>
@@ -22,7 +24,7 @@
     </ul>
 
     <div class="nav-right">
-      <div class="notification-icon">🔔</div>
+      <div class="notification-icon"></div>
       <div class="user-profile">
         <span class="user-initials">RK</span>
         <span class="user-role">Super Admin</span>
@@ -56,12 +58,12 @@
         <!-- SEARCH AND ACTIONS -->
         <div class="students-toolbar">
           <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
             <input type="text" placeholder="Search by name, class, phone...">
           </div>
           <div class="toolbar-buttons">
-            <button class="btn btn-import" onclick="importExcel()">📥 Import Excel</button>
-            <button class="btn btn-add" onclick="openAddStudentModal()">+ Add Student</button>
+            <button class="btn btn-import btn-fixed" onclick="importExcel()"><i class="fa-solid fa-file-import"></i> Import Excel</button>
+            <button class="btn btn-add btn-fixed" onclick="openAddStudentModal()">+ Add Student</button>
           </div>
         </div>
 
@@ -91,9 +93,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -110,9 +112,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -129,9 +131,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -148,9 +150,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -167,9 +169,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -183,10 +185,10 @@
       <div id="parents-tab" class="tab-content">
         <div class="parents-toolbar">
           <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
             <input type="text" placeholder="Search by name, phone, email...">
           </div>
-          <button class="btn btn-add" onclick="openAddParentModal()">+ Add Parent</button>
+          <button class="btn btn-add btn-fixed" onclick="openAddParentModal()">+ Add Parent</button>
         </div>
 
         <div class="table-card">
@@ -212,9 +214,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -230,9 +232,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -248,9 +250,9 @@
                   <div class="action-menu-wrapper">
                     <span class="action-dots" onclick="toggleStudentMenu(event)">⋮</span>
                     <div class="student-action-dropdown" onclick="closeStudentMenu(event)">
-                      <button class="action-item" onclick="viewStudent(event)">👁️ View</button>
-                      <button class="action-item" onclick="editStudent(event)">✏️ Edit</button>
-                      <button class="action-item delete" onclick="deleteStudent(event)">🗑️ Delete</button>
+                      <button class="action-item" onclick="viewStudent(event)">View</button>
+                      <button class="action-item" onclick="editStudent(event)">Edit</button>
+                      <button class="action-item delete" onclick="deleteStudent(event)">Delete</button>
                     </div>
                   </div>
                 </td>
@@ -484,6 +486,6 @@
     closeStudentMenus();
   });
 </script>
-
+<script src="js/script.js"></script>
 </body>
 </html>

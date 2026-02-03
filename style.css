@@ -39,6 +39,34 @@ body {
   gap: 8px;
 }
 
+/* Centered logo */
+.logo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-center a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Desktop: show brand on the left instead of centered */
+@media (min-width: 1025px) {
+  .logo-center {
+    position: static;
+    transform: none;
+    margin-left: 0;
+    order: 0;
+  }
+}
+
 .logo-dot {
   color: #f5c400;
   font-size: 20px;
@@ -735,6 +763,55 @@ body {
   .detail-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mobile sidebar behavior (use the existing nav-center as a sidebar) */
+  .nav-center {
+    position: fixed;
+    top: 70px;
+    left: 0; /* slide from left */
+    right: auto;
+    width: 260px;
+    height: calc(100% - 70px);
+    background: #0a0a0a;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  .nav-center li {
+    margin-bottom: 12px;
+  }
+
+  .nav-center li a {
+    color: #e0e0e0;
+    padding: 10px 4px;
+    display: block;
+    font-size: 15px;
+  }
+
+  .nav-center li a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+  }
+
+  .navbar.open .nav-center {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Compact buttons for Import/Export */
+  .btn-compact {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
 }
 
 /* ============================================ */
@@ -1430,6 +1507,192 @@ body {
   .tab-button {
     padding: 10px 16px;
     font-size: 13px;
+  }
+}
+
+/* Global responsive and mobile alignment (applied across all pages) */
+
+/* Menu toggle button styles */
+.menu-toggle {
+  display: none; /* shown on small screens */
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Allow table cards to scroll horizontally on small screens */
+.table-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  overflow: auto; /* changed from hidden to allow horizontal scroll */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* BREAKPOINT: tablet and below */
+@media (max-width: 1024px) {
+  .page-content {
+    padding: 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .header-left h1 {
+    font-size: 22px;
+  }
+
+  .search-input, .search-box {
+    max-width: 100%;
+  }
+}
+
+/* BREAKPOINT: mobile */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+    padding: 0 14px;
+  }
+
+  /* show menu toggle */
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: -1; /* ensure hamburger appears on the left */
+    margin-right: 12px;
+  }
+
+  /* keep specific toolbar buttons same size as desktop on mobile */
+  .toolbar-buttons .btn.btn-fixed {
+    width: auto !important;
+    display: inline-flex;
+    min-width: 120px;
+  }
+
+  .btn-fixed {
+    min-width: 120px;
+    padding: 10px 16px;
+  }
+
+  /* center menu becomes a sidebar on mobile: initial hidden via transform; .navbar.open will show it */
+  .nav-center {
+    display: flex;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 260px;
+    height: calc(100% - 60px);
+    background: #0a0a0a;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 16px;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+    left: 0; /* slide from left */
+    right: auto;
+  }
+
+  .navbar.open .nav-center {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navbar.open .nav-center,
+  .nav-center.open {
+    display: flex;
+  }
+
+  .nav-center li {
+    padding: 10px 16px;
+  }
+
+  .nav-center li a {
+    font-size: 15px;
+  }
+
+  .nav-right {
+    gap: 10px;
+  }
+
+  .page-content {
+    padding: 12px;
+  }
+
+  .schools-table th,
+  .schools-table td {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  /* allow table to be scrolled horizontally rather than breaking layout */
+  .schools-table {
+    min-width: 700px;
+  }
+
+  .modal-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* BREAKPOINT: very small phones */
+@media (max-width: 420px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .user-role {
+    display: none;
+  }
+
+  .user-initials {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .header-left h1 {
+    font-size: 20px;
+  }
+
+  .search-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .schools-table th,
+  .schools-table td {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .action-menu {
+    font-size: 16px;
   }
 }
 

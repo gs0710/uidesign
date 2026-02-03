@@ -16,14 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (!menuToggle) return;
 
+  // Ensure nav center is hidden by default on mobile
+  if (navCenter) navCenter.setAttribute('aria-hidden', 'true');
+
   function toggleMenu() {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    const willBeExpanded = !expanded;
+    menuToggle.setAttribute('aria-expanded', String(willBeExpanded));
     navbar.classList.toggle('open');
+    if (navCenter) navCenter.setAttribute('aria-hidden', String(!willBeExpanded));
 
     // focus management
-    if (!expanded) {
-      const firstLink = navCenter.querySelector('a');
+    if (willBeExpanded) {
+      const firstLink = navCenter && navCenter.querySelector('a');
       if (firstLink) firstLink.focus();
     } else {
       menuToggle.focus();
@@ -40,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!navbar.contains(e.target) && navbar.classList.contains('open')) {
       navbar.classList.remove('open');
       menuToggle.setAttribute('aria-expanded','false');
+      if (navCenter) navCenter.setAttribute('aria-hidden','true');
     }
   });
 
@@ -48,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape' && navbar.classList.contains('open')) {
       navbar.classList.remove('open');
       menuToggle.setAttribute('aria-expanded','false');
+      if (navCenter) navCenter.setAttribute('aria-hidden','true');
       menuToggle.focus();
     }
   });
@@ -57,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth > 768 && navbar.classList.contains('open')) {
       navbar.classList.remove('open');
       menuToggle.setAttribute('aria-expanded','false');
+      if (navCenter) navCenter.setAttribute('aria-hidden','true');
     }
   });
 });

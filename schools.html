@@ -11,12 +11,13 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="nav-left">
-      <span class="logo-dot">●</span>
-      <span class="logo-text">ClothsSales</span>
-    </div>
+    <div class="nav-left"></div>
 
-    <ul class="nav-center">
+    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
+
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+
+    <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html" class="active">School</a></li>
       <li><a href="billing.html">Billing</a></li>
@@ -50,7 +51,7 @@
     <!-- SEARCH AND FILTER -->
     <div class="search-filter-bar">
       <div class="search-box">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon"><i class="fa-solid fa-search"></i></span>
         <input type="text" placeholder="Search schools...">
       </div>
     </div>
@@ -88,7 +89,7 @@
                 <div class="action-dropdown" onclick="closeActionMenu(event)">
                   <button class="action-item" onclick="viewDetails(event)"> View Details</button>
                   <button class="action-item" onclick="editSchool(event)"> Edit</button>
-                  <button class="action-item delete" onclick="deleteSchool(event)">🗑️ Delete</button>
+                  <button class="action-item delete" onclick="deleteSchool(event)">Delete</button>
                 </div>
               </div>
             </td>
@@ -104,15 +105,15 @@
             <td>Sister Mary</td>
             <td>+91 98765 43211</td>
             <td>2025-2026</td>
-            <td><span class="student-count">👥 890</span></td>
+            <td><span class="student-count">890</span></td>
             <td><span class="status active">Active</span></td>
             <td>
               <div class="action-menu-wrapper">
                 <span class="action-menu" onclick="toggleActionMenu(event)">⋮</span>
                 <div class="action-dropdown" onclick="closeActionMenu(event)">
-                  <button class="action-item" onclick="viewDetails(event)">👁️ View Details</button>
-                  <button class="action-item" onclick="editSchool(event)">✏️ Edit</button>
-                  <button class="action-item delete" onclick="deleteSchool(event)">🗑️ Delete</button>
+                  <button class="action-item" onclick="viewDetails(event)">View Details</button>
+                  <button class="action-item" onclick="editSchool(event)">Edit</button>
+                  <button class="action-item delete" onclick="deleteSchool(event)">Delete</button>
                 </div>
               </div>
             </td>
@@ -136,7 +137,7 @@
                 <div class="action-dropdown" onclick="closeActionMenu(event)">
                   <button class="action-item" onclick="viewDetails(event)"> View Details</button>
                   <button class="action-item" onclick="editSchool(event)"> Edit</button>
-                  <button class="action-item delete" onclick="deleteSchool(event)">🗑️ Delete</button>
+                  <button class="action-item delete" onclick="deleteSchool(event)">Delete</button>
                 </div>
               </div>
             </td>
@@ -160,7 +161,7 @@
                 <div class="action-dropdown" onclick="closeActionMenu(event)">
                   <button class="action-item" onclick="viewDetails(event)"> View Details</button>
                   <button class="action-item" onclick="editSchool(event)"> Edit</button>
-                  <button class="action-item delete" onclick="deleteSchool(event)">🗑️ Delete</button>
+                  <button class="action-item delete" onclick="deleteSchool(event)">Delete</button>
                 </div>
               </div>
             </td>
@@ -184,7 +185,7 @@
                 <div class="action-dropdown" onclick="closeActionMenu(event)">
                   <button class="action-item" onclick="viewDetails(event)"> View Details</button>
                   <button class="action-item" onclick="editSchool(event)"> Edit</button>
-                  <button class="action-item delete" onclick="deleteSchool(event)">🗑️ Delete</button>
+                  <button class="action-item delete" onclick="deleteSchool(event)">Delete</button>
                 </div>
               </div>
             </td>
@@ -332,21 +333,23 @@
     document.getElementById("schoolModal").style.display = "none";
   }
 
-  function closeDetailsModal() {
-    document.getElementById("detailsModal").style.display = "none";
-  }
-
+  // Action dropdown toggles
   function toggleActionMenu(event) {
     event.stopPropagation();
     const wrapper = event.target.closest('.action-menu-wrapper');
     const dropdown = wrapper.querySelector('.action-dropdown');
+
+    // Close other dropdowns
+    document.querySelectorAll('.action-dropdown').forEach(el => {
+      if (el !== dropdown) el.classList.remove('show');
+    });
+
     dropdown.classList.toggle('show');
   }
 
   function closeActionMenu(event) {
     event.stopPropagation();
   }
-
   function viewDetails(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -476,6 +479,7 @@
     closeActionMenus();
   });
 </script>
+<script src="js/script.js"></script>
 
 </body>
 </html>

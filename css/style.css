@@ -45,6 +45,24 @@ body {
   font-size: 18px;
 }
 
+/* Centered logo (mobile) */
+.logo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-center a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+} 
+
 /* Center Menu */
 .nav-center {
   list-style: none;
@@ -372,30 +390,85 @@ body {
   /* Show hamburger, collapse center nav with slide-down */
   .menu-toggle {
     display: inline-flex;
+    order: -1; /* ensure hamburger appears on the left */
+    margin-right: 12px;
+  }
+
+  .logo-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .nav-center {
     display: flex;
+    position: fixed;
+    top: 64px;
+    left: 0; /* slide from left */
+    right: auto;
+    width: 260px;
+    height: calc(100% - 64px);
+    background: rgba(0,0,0,0.92);
     flex-direction: column;
     gap: 12px;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.92);
     padding: 12px 20px;
-    max-height: 0;
+    transform: translateX(-100%);
     opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.32s ease, opacity 0.24s ease;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.24s ease;
+    z-index: 1000;
   }
 
   .navbar.open .nav-center {
-    max-height: 420px;
+    transform: translateX(0);
     opacity: 1;
+    pointer-events: auto;
   }
 
   .logo-text { font-size: 16px; }
+
+@media (min-width: 1025px) {
+  /* On desktop, show brand on the left */
+  .logo-center {
+    position: leftv;
+    transform: none;
+    margin-left: 0;
+    order: 0;
+  }
+
+  /* Center the main nav and style desktop links like the screenshot */
+  .nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 36px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-center li a {
+    color: #bfbfbf;
+    font-size: 15px;
+    text-decoration: none;
+    padding-bottom: 10px;
+    line-height: 70px;
+    transition: color 0.2s;
+  }
+
+  .nav-center li a:hover {
+    color: #ffffff;
+  }
+
+  .nav-center li.active a,
+  .nav-center li a.active {
+    color: #ffffff;
+    border-bottom: 3px solid #f5c400;
+    padding-bottom: 6px;
+  }
+} 
 
   /* Hero adjustments */
   .hero {

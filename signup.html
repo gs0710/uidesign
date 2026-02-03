@@ -9,11 +9,13 @@
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-left">
-      <span class="logo-dot">●</span>
-      <span class="logo-text">ClothsSales</span>
-    </div>
-    <ul class="nav-center">
+    <div class="nav-left"></div>
+
+    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
+
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+
+    <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html">School</a></li>
       <li><a href="billing.html">Billing</a></li>
@@ -82,5 +84,6 @@
       setTimeout(() => { location.href = 'index.html'; }, 900);
     });
   </script>
+<script src="js/script.js"></script>
 </body>
 </html>
