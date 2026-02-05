@@ -4,30 +4,32 @@
   <meta charset="UTF-8">
   <title>Billing & Invoices | ClothsSales</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-left"></div>
+    <div class="nav-left">
+      <a href="index.html" class="logo-link"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a>
+    </div>
 
-    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
-
-    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
 
     <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="schools.html">School</a></li>
-      <li><a href="billing.html" class="active">Billing</a></li>
+      <li class="active"><a href="billing.html" aria-current="page">Billing</a></li>
       <li><a href="students.html">Students / Parents</a></li>
     </ul>
 
     <div class="nav-right">
-      <div class="notification-icon">🔔</div>
-      <div class="user-profile">
-        <span class="user-initials">RK</span>
-        <span class="user-role">Super Admin</span>
-      </div>
+      <a href="#" class="signin" id="open-signin">Sign In</a>
+      <a href="#" class="btn" id="open-signup">Sign Up</a>
+      <span class="navbar-user" id="navbar-user" style="display:none;"></span>
     </div>
   </nav>
 
@@ -440,17 +442,5 @@
     });
   }
 </script>
-
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="schools.html">Schools</a>
-      <a href="billing.html">Billing</a>
-      <a href="students.html">Students/Parents</a>
-      <a href="profile.html">Profile</a>
-      <a href="inventory.html">Inventory</a>
-    </div>
-    <div class="footer-copy">&copy; 2026 ClothsSales. All rights reserved.</div>
-  </footer>
 </body>
 </html>

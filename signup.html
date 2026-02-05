@@ -8,12 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-left"></div>
+    <div class="nav-left">
+      <a href="index.html" class="logo-link"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a>
+    </div>
 
-    <div class="logo-center"><a href="index.html"><span class="logo-dot">●</span><span class="logo-text">ClothsSales</span></a></div>
-
-    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">☰</button>
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="top-navigation" aria-label="Toggle navigation">
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
 
     <ul id="top-navigation" class="nav-center">
       <li><a href="index.html">Home</a></li>
@@ -21,8 +25,11 @@
       <li><a href="billing.html">Billing</a></li>
       <li><a href="students.html">Students / Parents</a></li>
     </ul>
+
     <div class="nav-right">
-      <a href="login.html" class="signin">Sign In</a>
+      <a href="#" class="signin" id="open-signin">Sign In</a>
+      <a href="#" class="btn" id="open-signup">Sign Up</a>
+      <span class="navbar-user" id="navbar-user" style="display:none;"></span>
     </div>
   </nav>
 
@@ -56,28 +63,72 @@
         <p style="margin-top:12px;color:#aaa;font-size:14px;text-align:center;">Already have an account? <a href="login.html" style="color:#f5c400; text-decoration:none;">Sign in</a></p>
 
         <div id="signupMessage" style="margin-top:12px;color:#22c55e; display:none;"></div>
+        <div id="signupError" style="margin-top:12px;color:#ef4444; display:none;"></div>
       </form>
     </div>
   </div>
 
   <script>
-    document.getElementById('signupForm').addEventListener('submit', function(e){
+    const API_BASE_URL = 'http://localhost:5000';
+
+    document.getElementById('signupForm').addEventListener('submit', async function(e){
       e.preventDefault();
       const name = document.getElementById('signupName').value.trim();
       const email = document.getElementById('signupEmail').value.trim();
-      // Mock sign-up - store user locally
-      const user = {name: name, email: email};
-      localStorage.setItem('user', JSON.stringify(user));
-      const msg = document.getElementById('signupMessage');
-      msg.textContent = 'Welcome, ' + name + '! Account created.';
-      msg.style.display = 'block';
-      setTimeout(() => { location.href = 'index.html'; }, 900);
+      const password = document.getElementById('signupPassword').value.trim();
+      
+      const msgDiv = document.getElementById('signupMessage');
+      const errorDiv = document.getElementById('signupError');
+      
+      msgDiv.style.display = 'none';
+      errorDiv.style.display = 'none';
+
+      try {
+        const response = await fetch(API_BASE_URL + '/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            role: 'clothes_admin'  // Default role for signup page
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          // Check if user already exists
+          if (response.status >= 400 && (data.msg.includes('already') || data.msg.includes('exists') || data.msg.includes('duplicate'))) {
+            errorDiv.textContent = 'You already signed up - now sign in';
+          } else {
+            errorDiv.textContent = data.msg || 'Sign up failed. Please try again.';
+          }
+          errorDiv.style.display = 'block';
+          return;
+        }
+
+        // Success
+        msgDiv.textContent = 'Welcome, ' + name + '! Account created successfully. Redirecting to login...';
+        msgDiv.style.display = 'block';
+        
+        setTimeout(() => { 
+          location.href = 'login.html'; 
+        }, 1500);
+      } catch (error) {
+        console.error('Signup error:', error);
+        errorDiv.textContent = 'Connection error - make sure backend is running on ' + API_BASE_URL;
+        errorDiv.style.display = 'block';
+      }
     });
 
     document.getElementById('googleSignUp').addEventListener('click', function(){
-      // Mock Google sign-up
+      // TODO: Implement real Google OAuth here
       const mock = {name: 'Google User', email: 'user@gmail.com'};
-      localStorage.setItem('user', JSON.stringify(mock));
+      localStorage.setItem('authToken', 'google-token');
+      localStorage.setItem('userEmail', mock.email);
       const msg = document.getElementById('signupMessage');
       msg.textContent = 'Signed up as ' + mock.email;
       msg.style.display = 'block';
